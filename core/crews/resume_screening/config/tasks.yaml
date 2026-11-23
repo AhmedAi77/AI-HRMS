@@ -1,0 +1,55 @@
+
+resume_screening_task:
+  description: >
+    Inputs:
+    **candidate_resume:** {candidate_resume}
+    **job_title:** {job_title}
+    **job_description:** {job_description}
+    **required_skills:** {required_skills}
+
+    Task:
+    1. Analyze the candidate's resume and extract relevant information,
+       including education, qualifications, and work experience.
+
+    2. Compare the candidate's qualifications and experience against
+       the job title, description, and required skills.
+
+    3. Extract the candidate's technical skills and soft skills.
+
+    4. Identify the candidate's strengths and missing or insufficiently
+       demonstrated skills based on the job requirements.
+
+    5. Calculate an overall match score between 0 and 100 based on
+       how well the candidate meets the job requirements.
+
+    6. Ensure the evaluation is objective and supported by evidence
+       from the resume. Do not assume or invent qualifications.
+
+    7. Recommend exactly one of:
+       - "proceed": Strong match, invite to interview.
+       - "hold": Partial match, needs human review.
+       - "reject": Weak match.
+
+    8. Write a short 2-3 sentence summary justifying the score
+       and recommendation.
+
+  expected_output: >
+    Return ONLY a JSON object. Do not wrap it in Markdown code fences.
+    Use this exact structure:
+
+    {{
+      "score": 85,
+      "extracted_technical_skills": ["Python", "Django"],
+      "extracted_soft_skills": ["Communication", "Teamwork"],
+      "strengths": ["Relevant technical experience"],
+      "missing_skills": ["Docker"],
+      "recommendation": "proceed",
+      "summary": "A short justification of the score and recommendation."
+    }}
+
+    The score must be an integer between 0 and 100.
+    The recommendation must be exactly one of:
+    "proceed", "hold", or "reject".
+    Return valid JSON without additional text.
+
+  agent: resume_screening_agent

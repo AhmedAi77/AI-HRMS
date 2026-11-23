@@ -15,7 +15,7 @@ class ScreeningResult(models.Model):
         ]
     )
 
-    missing_skills = models.JSONField(default=list)
+    missing_skills = models.JSONField(default=list,blank=True)
 
     summary = models.TextField()
 
@@ -33,7 +33,10 @@ class ScreeningResult(models.Model):
         choices=RECOMMENDATION_CHOICES
     )
 
-    strengths = models.JSONField(default=list)
+    strengths = models.JSONField(default=list,blank=True)
+
+    class Meta:
+        ordering = ["-generated_at"]
 
 
     def __str__(self):

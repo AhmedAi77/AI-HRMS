@@ -14,14 +14,18 @@ class InterviewQuestionSet(models.Model):
         ScreeningResult,
         on_delete=models.PROTECT
     )
-    technical_questions = models.JSONField(default=list)
+    technical_questions = models.JSONField(default=list,blank=True)
 
-    behavioral_questions = models.JSONField(default=list)
+    behavioral_questions = models.JSONField(default=list,blank=True)
 
-    follow_up_questions = models.JSONField(default=list)
+    follow_up_questions = models.JSONField(default=list,blank=True)
 
     generated_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ["-generated_at"]
+
     def __str__(self):
         return f"{self.candidate.full_name} - {self.job_position.title}"
+
 
