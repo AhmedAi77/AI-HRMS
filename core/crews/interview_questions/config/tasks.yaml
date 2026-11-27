@@ -1,47 +1,32 @@
-
 interview_question_task:
-  description: >
-    Inputs:
-    **candidate_resume:** {candidate_resume}
-    **job_title:** {job_title}
-    **job_description:** {job_description}
-    **screening_report:** {screening_report}
+  description: |
+    ### Inputs:
+    - **candidate_resume:** {candidate_resume}
+    - **job_title:** {job_title}
+    - **job_description:** {job_description}
+    - **screening_report:** {screening_report}
 
-    Task:
-    1. Analyze the candidate's resume, job title,
-       job description, and screening report.
+    ### Task:
+    Design an interview guide for this candidate and role.
+    1. Read the candidate_resume, the job_description and the screening_report.
+    2. Generate 5 **technical** questions that verify the candidate's claimed
+       technical skills and probe the missing skills from the screening report.
+    3. Generate 4 **behavioral** questions that assess soft skills and culture
+       fit relevant to the role.
+    4. Generate 3 **follow-up** questions that dig deeper into specific
+       experiences or gaps mentioned in the resume or screening report.
 
-    2. Generate technical questions to verify demonstrated
-       skills and investigate missing skills identified
-       in the screening report.
-
-    3. Generate behavioral questions to assess relevant
-       soft skills and suitability for the job role.
-
-    4. Generate follow-up questions to explore specific
-       projects, previous experiences, and gaps.
-
-    5. Ensure all questions are clear, professional,
-       fair, and based on the provided information.
-
-    6. Do not invent candidate qualifications or experiences.
+    Make every question specific to this candidate and role. Avoid generic,
+    copy-paste questions. Format your answer as JSON matching expected_output.
 
   expected_output: >
-    Return ONLY a valid JSON object without Markdown fences.
+    Return ONLY a JSON object (do NOT wrap it in ```json fences, start directly
+    with {) using this exact structure:
 
-    {{
-      "technical_questions": [
-        "Question about a technical skill?"
-      ],
-      "behavioral_questions": [
-        "Question about teamwork or communication?"
-      ],
-      "follow_up_questions": [
-        "Question about a specific project or experience?"
-      ]
-    }}
-
-    Each field must contain a list of strings.
-    Return no additional text.
+    {
+      "technical_questions": ["question", "..."],
+      "behavioral_questions": ["question", "..."],
+      "follow_up_questions": ["question", "..."]
+    }
 
   agent: interview_question_generator

@@ -134,3 +134,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
 
+OPENAI_MODEL=config('OPENAI_MODEL')
+OPENAI_APIKEY=config('OPENAI_APIKEY')
+OPRNAI_DEFAULT_TEMPERATURE=config('OPRNAI_DEFAULT_TEMPERATURE',cast=float)
